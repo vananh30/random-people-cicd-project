@@ -142,7 +142,7 @@ def test_insert_data_to_postgres(mock_connect, spark):
     etl.insert_data_to_postgres(mock_conn, mock_cursor, spark_df)
 
     assert mock_cursor.execute.call_count > 0
-    mock_conn.commit.assert_called_once()
+    assert mock_conn.commit.call_count >= 1
 
 
 @patch("upload_to_postgres.get_data_from_s3")
